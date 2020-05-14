@@ -25,6 +25,7 @@ public class AccountingStatisticsViewHandler {
                     accountingStatistics.setOrderCount(accountingStatistics.getOrderCount() + 1);
                     accountingStatistics.setSalesSum(accountingStatistics.getSalesSum() + orderReceived.getPrice());
                     accountingStatistics.setSalesQty(accountingStatistics.getSalesQty() + orderReceived.getQty());
+                    accountingStatistics.setOrderedSum(accountingStatistics.getOrderedSum());
                     accountingStatisticsRepository.save(accountingStatistics);
                 } else {
                     accountingStatistics = new AccountingStatistics();
@@ -32,6 +33,7 @@ public class AccountingStatisticsViewHandler {
                     accountingStatistics.setOrderCount((double) 1);
                     accountingStatistics.setSalesSum((double) orderReceived.getPrice());
                     accountingStatistics.setSalesQty((double) orderReceived.getQty());
+                    accountingStatistics.setOrderedSum(accountingStatistics.getOrderedSum());
                     accountingStatisticsRepository.save(accountingStatistics);
                 }
             }
@@ -51,7 +53,7 @@ public class AccountingStatisticsViewHandler {
                 AccountingStatistics accountingStatistics;
                 if (accountingStatisticsRepository.findById(yearMonth).isPresent()) {
                     accountingStatistics = accountingStatisticsRepository.findById(yearMonth).get();
-                    accountingStatistics.setSalesTotalSum(accountingStatistics.getSalesTotalSum() + orderSelected.getPrice());
+                    accountingStatistics.setOrderedSum(accountingStatistics.getOrderedSum() + orderSelected.getPrice());
                     accountingStatisticsRepository.save(accountingStatistics);
                 } else {
                     accountingStatistics = new AccountingStatistics();
@@ -61,7 +63,7 @@ public class AccountingStatisticsViewHandler {
                     accountingStatistics.setSalesSum((double) 0);
                     accountingStatistics.setSalesQty((double) 0);
 
-                    accountingStatistics.setSalesTotalSum(accountingStatistics.getSalesTotalSum() + orderSelected.getPrice());
+                    accountingStatistics.setOrderedSum((double) orderSelected.getPrice());
                     accountingStatisticsRepository.save(accountingStatistics);
                 }
             }

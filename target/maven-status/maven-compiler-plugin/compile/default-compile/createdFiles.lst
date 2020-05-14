@@ -8,6 +8,8 @@ local\PolicyHandler.class
 local\OrderReceived.class
 local\Accounting.class
 local\AccountingStatistics.class
+local\headquarterSend.class
 local\AccountingRepository.class
+local\OrderSelected.class
 local\AccountingController.class
 local\Application.class

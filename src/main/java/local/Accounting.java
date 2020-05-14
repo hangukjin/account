@@ -24,10 +24,8 @@ public class Accounting {
         BeanUtils.copyProperties(this, salesTransferred);
         salesTransferred.setCafeId(92);
 
-        this.salesTransfer(salesTransferred);
-    }
-    @RequestMapping(method= RequestMethod.POST, path="/headquarters")
-    public void salesTransfer(@RequestBody SalesTransferred salesTransferred){
+        headquarterSend headquarterSend = Application.applicationContext.getBean(headquarterSend.class);
+        headquarterSend.headquarter2Send(salesTransferred);
     }
 
     public String getYearmonth() {

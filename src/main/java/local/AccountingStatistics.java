@@ -14,7 +14,7 @@ public class AccountingStatistics {
     private Double salesQty;
     private Double orderCount;
 
-    private Double salesTotalSum;
+    private Double orderedSum;
 
     public String getYearmonth() {
         return yearmonth;
@@ -48,11 +48,11 @@ public class AccountingStatistics {
         this.orderCount = orderCount;
     }
 
-    public Double getSalesTotalSum() {
-        return salesTotalSum;
+    public Double getOrderedSum() {
+        return orderedSum;
     }
 
-    public void setSalesTotalSum(Double salesTotalSum) {
-        this.salesTotalSum = salesTotalSum;
+    public void setOrderedSum(Double orderedSum) {
+        this.orderedSum = orderedSum;
     }
 }
