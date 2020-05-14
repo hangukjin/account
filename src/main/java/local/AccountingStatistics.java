@@ -14,6 +14,8 @@ public class AccountingStatistics {
     private Double salesQty;
     private Double orderCount;
 
+    private Double salesTotalSum;
+
     public String getYearmonth() {
         return yearmonth;
     }
@@ -44,5 +46,13 @@ public class AccountingStatistics {
 
     public void setOrderCount(Double orderCount) {
         this.orderCount = orderCount;
+    }
+
+    public Double getSalesTotalSum() {
+        return salesTotalSum;
+    }
+
+    public void setSalesTotalSum(Double salesTotalSum) {
+        this.salesTotalSum = salesTotalSum;
     }
 }

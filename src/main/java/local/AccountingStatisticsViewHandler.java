@@ -40,4 +40,33 @@ public class AccountingStatisticsViewHandler {
         }
     }
 
+
+    @StreamListener(KafkaProcessor.INPUT)
+    public void whenOrderSelected_then_CREATE_OR_UPDATE (@Payload OrderSelected orderSelected) {
+        try {
+            if (orderSelected.isMe()) {
+
+                String yearMonth = orderSelected.getTimestamp().substring(0, 8);
+
+                AccountingStatistics accountingStatistics;
+                if (accountingStatisticsRepository.findById(yearMonth).isPresent()) {
+                    accountingStatistics = accountingStatisticsRepository.findById(yearMonth).get();
+                    accountingStatistics.setSalesTotalSum(accountingStatistics.getSalesTotalSum() + orderSelected.getPrice());
+                    accountingStatisticsRepository.save(accountingStatistics);
+                } else {
+                    accountingStatistics = new AccountingStatistics();
+
+                    accountingStatistics.setYearmonth(yearMonth);
+                    accountingStatistics.setOrderCount((double) 0);
+                    accountingStatistics.setSalesSum((double) 0);
+                    accountingStatistics.setSalesQty((double) 0);
+
+                    accountingStatistics.setSalesTotalSum(accountingStatistics.getSalesTotalSum() + orderSelected.getPrice());
+                    accountingStatisticsRepository.save(accountingStatistics);
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
